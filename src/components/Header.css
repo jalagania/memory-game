@@ -1,0 +1,45 @@
+.section-container {
+  max-width: 110rem;
+  margin: 0 auto;
+}
+
+header .section-container {
+  padding-top: 6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.header-buttons button {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2.5rem;
+  padding: 1.4rem 2.8rem;
+  border-radius: 2.6rem;
+}
+
+.btn-restart {
+  color: var(--white);
+  background-color: var(--orange);
+}
+
+.btn-new-game {
+  color: var(--gray-dark);
+  background-color: var(--gray-lighter);
+}
+
+@media (hover: hover) {
+  .btn-restart:hover {
+    background-color: var(--orange-hover);
+  }
+
+  .btn-new-game:hover {
+    color: var(--white);
+    background-color: var(--cyan-dark);
+  }
+}

@@ -1,7 +1,14 @@
 import "./App.css";
+import Multiplayer from "./components/Multiplayer";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <div>
+      {/* <Menu /> */}
+      <Multiplayer />
+      {/* <Solo /> */}
+    </div>
+  );
 }
 
 export default App;

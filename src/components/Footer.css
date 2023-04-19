@@ -1,0 +1,72 @@
+.multiplayer-buttons,
+.solo-buttons {
+  display: flex;
+  gap: 3rem;
+}
+
+.solo-buttons {
+  max-width: 54rem;
+  margin: 0 auto;
+}
+
+.multiplayer-buttons button,
+.solo-buttons div {
+  width: 100%;
+  padding: 1.6rem 2.4rem;
+  background-color: var(--gray-lighter);
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.player-text,
+.button-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 2.2rem;
+  color: var(--gray);
+}
+
+.player-score,
+.player-time {
+  font-size: 3.2rem;
+  font-weight: 700;
+  line-height: 4rem;
+  color: var(--gray-dark);
+}
+
+.btn-player.active {
+  background-color: var(--orange);
+  position: relative;
+}
+
+.btn-player.active::before {
+  content: "";
+  border-left: 2.5rem solid transparent;
+  border-right: 2.5rem solid transparent;
+  border-bottom: 2.5rem solid var(--orange);
+  position: absolute;
+  top: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-player.active::after {
+  content: "Current Turn";
+  width: 100%;
+  color: var(--navy);
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.6rem;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  position: absolute;
+  bottom: -3rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.btn-player.active p {
+  color: var(--white);
+}

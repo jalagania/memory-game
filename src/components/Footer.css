@@ -1,6 +1,7 @@
 .multiplayer-buttons,
 .solo-buttons {
   display: flex;
+  justify-content: center;
   gap: 3rem;
 }
 
@@ -11,13 +12,14 @@
 
 .multiplayer-buttons button,
 .solo-buttons div {
-  width: 100%;
+  max-width: 25rem;
   padding: 1.6rem 2.4rem;
   background-color: var(--gray-lighter);
   border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-grow: 1;
 }
 
 .player-text,

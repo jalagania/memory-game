@@ -1,31 +1,30 @@
+import { useGlobalContext } from "../context";
 import "./Footer.css";
 
-function Footer({ name }: { name: string }) {
+function Footer() {
+  const { playerNumber } = useGlobalContext();
+  const player = playerNumber > 1 ? "multi" : "solo";
+  const players = Array(playerNumber).fill(0);
+
   return (
     <footer className="game-footer">
       <div className="section-container">
         <div className="footer-box">
-          {name !== "solo" && (
+          {player === "multi" && (
             <div className="multiplayer-buttons">
-              <button className="btn-player" name="one">
-                <p className="player-text">Player 1</p>
-                <p className="player-score">0</p>
-              </button>
-              <button className="btn-player active" name="two">
-                <p className="player-text">Player 2</p>
-                <p className="player-score">0</p>
-              </button>
-              <button className="btn-player" name="three">
-                <p className="player-text">Player 3</p>
-                <p className="player-score">0</p>
-              </button>
-              <button className="btn-player" name="four">
-                <p className="player-text">Player 4</p>
-                <p className="player-score">0</p>
-              </button>
+              {players.map((player, index) => (
+                <button
+                  key={index}
+                  className="btn-player"
+                  name={index.toString()}
+                >
+                  <p className="player-text">Player {index + 1}</p>
+                  <p className="player-score">0</p>
+                </button>
+              ))}
             </div>
           )}
-          {name === "solo" && (
+          {player === "solo" && (
             <div className="solo-buttons">
               <div className="time-box">
                 <p className="button-text">Time</p>

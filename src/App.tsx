@@ -1,12 +1,14 @@
-import "./App.css";
-import Multiplayer from "./components/Multiplayer";
+import Game from "./components/Game";
+import Menu from "./components/Menu";
+import { useGlobalContext } from "./context";
 
 function App() {
+  const { showMenu, showGame } = useGlobalContext();
+
   return (
     <div>
-      {/* <Menu /> */}
-      <Multiplayer />
-      {/* <Solo /> */}
+      {showMenu && <Menu />}
+      {showGame && <Game />}
     </div>
   );
 }

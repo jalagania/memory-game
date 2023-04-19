@@ -68,3 +68,9 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.section-container {
+  max-width: 110rem;
+  width: 90%;
+  margin: 0 auto;
+}

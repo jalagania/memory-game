@@ -1,8 +1,11 @@
 header .section-container {
-  padding-top: 6rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.logo {
+  width: 14rem;
 }
 
 .header-buttons {
@@ -11,10 +14,10 @@ header .section-container {
 }
 
 .header-buttons button {
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 700;
   line-height: 2.5rem;
-  padding: 1.4rem 2.8rem;
+  padding: 1rem 2.4rem;
   border-radius: 2.6rem;
 }
 

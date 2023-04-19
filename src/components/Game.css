@@ -1,4 +1,55 @@
 .game-container {
   height: 100vh;
   background-color: var(--white);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-wrapper {
+  width: 100%;
+}
+
+.game-board {
+  height: 50rem;
+  margin: 0 auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, max-content);
+  gap: 2rem;
+}
+
+.grid-6 {
+  grid-template-columns: repeat(6, max-content);
+  gap: 1.6rem;
+}
+
+.btn-item {
+  border-radius: 50%;
+  color: var(--white);
+  background-color: var(--gray-light);
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-4 .btn-item {
+  width: 8rem;
+  height: 8rem;
+  font-size: 4rem;
+  line-height: 6.9rem;
+}
+
+.grid-6 .btn-item {
+  width: 6rem;
+  height: 6rem;
+  font-size: 3.2rem;
+  line-height: 5.5rem;
 }

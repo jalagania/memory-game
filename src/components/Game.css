@@ -30,14 +30,19 @@
 }
 
 .btn-item {
-  border-radius: 50%;
-  color: var(--white);
-  background-color: var(--gray-light);
   font-weight: 700;
+  color: var(--white);
+  background-color: var(--gray-dark);
+  border-radius: 50%;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.btn-item > * {
+  display: none;
+  pointer-events: none;
 }
 
 .grid-4 .btn-item {
@@ -52,4 +57,12 @@
   height: 6rem;
   font-size: 3.2rem;
   line-height: 5.5rem;
+}
+
+.btn-item.open {
+  background-color: var(--gray-light);
+}
+
+.btn-item.open > * {
+  display: block;
 }

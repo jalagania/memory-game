@@ -5,7 +5,7 @@ import "./Game.css";
 import Header from "./Header";
 
 function Game() {
-  const { gridSize } = useGlobalContext();
+  const { theme, gridSize } = useGlobalContext();
   let items = Array.from(Array((gridSize * gridSize) / 2).keys());
   items = _.shuffle(items.concat(items));
 
@@ -16,7 +16,8 @@ function Game() {
         <main className={`game-board ${gridSize === 4 ? "grid-4" : "grid-6"}`}>
           {items.map((item, index) => (
             <button key={index} className="btn-item">
-              {item}
+              {theme === "numbers" && <p>{item}</p>}
+              {theme === "icons" && <p>{item}</p>}
             </button>
           ))}
         </main>

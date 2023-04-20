@@ -45,11 +45,19 @@
   pointer-events: none;
 }
 
+.btn-item img {
+  filter: invert(1);
+}
+
 .grid-4 .btn-item {
   width: 8rem;
   height: 8rem;
   font-size: 4rem;
   line-height: 6.9rem;
+}
+
+.grid-4 .btn-item img {
+  width: 3.5rem;
 }
 
 .grid-6 .btn-item {

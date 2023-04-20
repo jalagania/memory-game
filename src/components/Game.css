@@ -71,6 +71,24 @@
   background-color: var(--gray-light);
 }
 
+.btn-item.open.last {
+  background-color: var(--orange);
+}
+
 .btn-item.open > * {
   display: block;
+}
+
+@media (hover: hover) {
+  .btn-item:hover {
+    background-color: var(--cyan-dark);
+  }
+
+  .btn-item.open:hover {
+    background-color: var(--gray-light);
+  }
+
+  .btn-item.open.last:hover {
+    background-color: var(--orange);
+  }
 }

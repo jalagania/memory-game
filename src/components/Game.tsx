@@ -13,6 +13,8 @@ function Game() {
     setItemsArray,
     clicks,
     setClicks,
+    moves,
+    setMoves,
     matches,
     setMatches,
     setShowResult,
@@ -43,6 +45,7 @@ function Game() {
   useEffect(() => {
     setTimeout(() => {
       if (itemsArray.length === 2) {
+        setMoves(moves + 1);
         if (
           itemsArray[0].name !== itemsArray[1].name &&
           itemsArray[0].index !== itemsArray[1].index

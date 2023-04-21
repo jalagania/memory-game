@@ -4,7 +4,7 @@ import RestartButton from "./RestartButton";
 import "./ResultModal.css";
 
 function ResultModal() {
-  const { playerNumber } = useGlobalContext();
+  const { playerNumber, moves } = useGlobalContext();
   const player = playerNumber > 1 ? "multi" : "solo";
   let titleMulti = "";
   const title = player === "solo" ? "You did it!" : titleMulti;
@@ -23,7 +23,7 @@ function ResultModal() {
           </div>
           <div className="stats-box">
             <p className="stats-text">Moves Taken</p>
-            <p className="stats-score">39 Moves</p>
+            <p className="stats-score">{moves} Moves</p>
           </div>
         </div>
         <div className="result-box-buttons">

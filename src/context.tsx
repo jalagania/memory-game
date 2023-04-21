@@ -28,6 +28,8 @@ interface ContextType {
   setItemsArray: React.Dispatch<React.SetStateAction<ItemType[]>>;
   clicks: string[];
   setClicks: StateArrayType;
+  moves: number;
+  setMoves: (arg: number) => void;
   matches: string[];
   setMatches: StateArrayType;
   restartGame: () => void;
@@ -45,6 +47,7 @@ export function ContextProvider({ children }: PropsWithChildren) {
   const [boardItems, setBoardItems] = useState<string[]>([]);
   const [itemsArray, setItemsArray] = useState<ItemType[]>([]);
   const [clicks, setClicks] = useState<string[]>([]);
+  const [moves, setMoves] = useState(0);
   const [matches, setMatches] = useState<string[]>([]);
 
   function getBoardItems(): string[] {
@@ -57,6 +60,7 @@ export function ContextProvider({ children }: PropsWithChildren) {
 
   function restartGame() {
     setClicks([]);
+    setMoves(0);
     setMatches([]);
     setItemsArray([]);
     setBoardItems(getBoardItems());
@@ -84,6 +88,8 @@ export function ContextProvider({ children }: PropsWithChildren) {
         setItemsArray,
         clicks,
         setClicks,
+        moves,
+        setMoves,
         matches,
         setMatches,
         restartGame,

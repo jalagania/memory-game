@@ -33,6 +33,9 @@ interface ContextType {
   matches: string[];
   setMatches: StateArrayType;
   restartGame: () => void;
+  timer: number;
+  setTimer: React.Dispatch<React.SetStateAction<number>>;
+  getTime: () => string;
 }
 
 const AppContext = createContext({} as ContextType);
@@ -47,8 +50,9 @@ export function ContextProvider({ children }: PropsWithChildren) {
   const [boardItems, setBoardItems] = useState<string[]>([]);
   const [itemsArray, setItemsArray] = useState<ItemType[]>([]);
   const [clicks, setClicks] = useState<string[]>([]);
-  const [moves, setMoves] = useState(0);
   const [matches, setMatches] = useState<string[]>([]);
+  const [moves, setMoves] = useState(0);
+  const [timer, setTimer] = useState(0);
 
   function getBoardItems(): string[] {
     let numbers = Array.from(Array((gridSize * gridSize) / 2).keys()).map((el) => el.toString());
@@ -58,9 +62,18 @@ export function ContextProvider({ children }: PropsWithChildren) {
     return theme === "numbers" ? numbers : icons;
   }
 
+  function getTime() {
+    return timer > 60
+      ? `${Math.trunc(timer / 60)
+          .toString()
+          .padStart(2, "0")}:${(timer % 60).toString().padStart(2, "0")}`
+      : `00:${timer.toString().padStart(2, "0")}`;
+  }
+
   function restartGame() {
     setClicks([]);
     setMoves(0);
+    setTimer(0);
     setMatches([]);
     setItemsArray([]);
     setBoardItems(getBoardItems());
@@ -93,6 +106,9 @@ export function ContextProvider({ children }: PropsWithChildren) {
         matches,
         setMatches,
         restartGame,
+        timer,
+        setTimer,
+        getTime,
       }}
     >
       {children}

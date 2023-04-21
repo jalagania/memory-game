@@ -2,7 +2,7 @@ import { useGlobalContext } from "../context";
 import "./Footer.css";
 
 function Footer() {
-  const { playerNumber, moves } = useGlobalContext();
+  const { playerNumber, moves, getTime } = useGlobalContext();
   const player = playerNumber > 1 ? "multi" : "solo";
   const players = Array(playerNumber).fill(0);
 
@@ -24,7 +24,7 @@ function Footer() {
             <div className="solo-buttons">
               <div className="time-box">
                 <p className="button-text">Time</p>
-                <p className="player-time">1:53</p>
+                <p className="player-time">{getTime()}</p>
               </div>
               <div className="moves-box">
                 <p className="button-text">Moves</p>

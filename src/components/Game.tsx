@@ -18,9 +18,20 @@ function Game() {
     matches,
     setMatches,
     setShowResult,
+    timer,
+    setTimer,
   } = useGlobalContext();
 
   const boardRef = useRef<HTMLDivElement>(null);
+
+  function startTimer() {
+    const timerFunc = setInterval(() => {
+      setTimer((prevState) => prevState + 1);
+      if (matches.length === (gridSize * gridSize) / 2) {
+        clearInterval(timerFunc);
+      }
+    }, 1000);
+  }
 
   function handleItemClick(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -40,6 +51,7 @@ function Game() {
         return [...prevState, { name: item, index: index }];
       });
     }
+    if (timer === 0) startTimer();
   }
 
   useEffect(() => {

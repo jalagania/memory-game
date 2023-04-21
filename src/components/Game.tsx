@@ -8,6 +8,7 @@ function Game() {
   const {
     theme,
     gridSize,
+    playerNumber,
     boardItems,
     itemsArray,
     setItemsArray,
@@ -19,19 +20,13 @@ function Game() {
     setMatches,
     setShowResult,
     timer,
-    setTimer,
+    startTimer,
+    intervalRef,
+    currentPlayer,
+    setCurrentPlayer,
   } = useGlobalContext();
 
   const boardRef = useRef<HTMLDivElement>(null);
-
-  function startTimer() {
-    const timerFunc = setInterval(() => {
-      setTimer((prevState) => prevState + 1);
-      if (matches.length === (gridSize * gridSize) / 2) {
-        clearInterval(timerFunc);
-      }
-    }, 1000);
-  }
 
   function handleItemClick(
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -51,13 +46,19 @@ function Game() {
         return [...prevState, { name: item, index: index }];
       });
     }
-    if (timer === 0) startTimer();
+    if (timer === 0 && playerNumber === 1) startTimer();
   }
 
   useEffect(() => {
     setTimeout(() => {
       if (itemsArray.length === 2) {
         setMoves(moves + 1);
+        if (currentPlayer === playerNumber - 1) {
+          setCurrentPlayer(0);
+        } else {
+          setCurrentPlayer(currentPlayer + 1);
+        }
+
         if (
           itemsArray[0].name !== itemsArray[1].name &&
           itemsArray[0].index !== itemsArray[1].index
@@ -76,8 +77,10 @@ function Game() {
         setItemsArray([]);
       }
     }, 500);
+
     if (matches.length === (gridSize * gridSize) / 2) {
       setShowResult(true);
+      clearInterval(intervalRef.current);
     }
   }, [itemsArray]);
 

@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import { PropsWithChildren, createContext, useContext, useRef, useState } from "react";
 import { iconpack } from "./data";
 
 interface ItemType {
@@ -36,6 +36,10 @@ interface ContextType {
   timer: number;
   setTimer: React.Dispatch<React.SetStateAction<number>>;
   getTime: () => string;
+  startTimer: () => void;
+  intervalRef: React.MutableRefObject<number | undefined>;
+  currentPlayer: number;
+  setCurrentPlayer: (arg: number) => void;
 }
 
 const AppContext = createContext({} as ContextType);
@@ -53,6 +57,7 @@ export function ContextProvider({ children }: PropsWithChildren) {
   const [matches, setMatches] = useState<string[]>([]);
   const [moves, setMoves] = useState(0);
   const [timer, setTimer] = useState(0);
+  const [currentPlayer, setCurrentPlayer] = useState(0);
 
   function getBoardItems(): string[] {
     let numbers = Array.from(Array((gridSize * gridSize) / 2).keys()).map((el) => el.toString());
@@ -62,8 +67,15 @@ export function ContextProvider({ children }: PropsWithChildren) {
     return theme === "numbers" ? numbers : icons;
   }
 
+  const intervalRef = useRef<number>();
+  function startTimer() {
+    intervalRef.current = setInterval(() => {
+      setTimer((prevState) => prevState + 1);
+    }, 1000);
+  }
+
   function getTime() {
-    return timer > 60
+    return timer > 59
       ? `${Math.trunc(timer / 60)
           .toString()
           .padStart(2, "0")}:${(timer % 60).toString().padStart(2, "0")}`
@@ -78,6 +90,8 @@ export function ContextProvider({ children }: PropsWithChildren) {
     setItemsArray([]);
     setBoardItems(getBoardItems());
     setShowResult(false);
+    clearInterval(intervalRef.current);
+    setCurrentPlayer(0);
   }
 
   return (
@@ -109,6 +123,10 @@ export function ContextProvider({ children }: PropsWithChildren) {
         timer,
         setTimer,
         getTime,
+        startTimer,
+        intervalRef,
+        currentPlayer,
+        setCurrentPlayer,
       }}
     >
       {children}

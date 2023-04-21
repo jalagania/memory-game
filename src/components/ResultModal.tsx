@@ -5,27 +5,38 @@ import "./ResultModal.css";
 
 function ResultModal() {
   const { playerNumber, moves, getTime } = useGlobalContext();
-  const player = playerNumber > 1 ? "multi" : "solo";
   let titleMulti = "";
-  const title = player === "solo" ? "You did it!" : titleMulti;
+  const title = playerNumber === 1 ? "You did it!" : titleMulti;
   const subtitle =
-    player === "solo" ? "Game over! Here's how you got on…" : "Game over! Here are the results…";
+    playerNumber === 1 ? "Game over! Here's how you got on…" : "Game over! Here are the results…";
 
   return (
     <div className="modal-container">
       <div className="result-box">
         <h1 className="result-title">{title}</h1>
         <p className="result-subtitle">{subtitle}</p>
-        <div className="stats-box-container">
-          <div className="stats-box">
-            <p className="stats-text">Time Elapsed</p>
-            <p className="stats-score">{getTime()}</p>
+        {playerNumber === 1 && (
+          <div className="stats-box-container">
+            <div className="stats-box">
+              <p className="stats-text">Time Elapsed</p>
+              <p className="stats-score">{getTime()}</p>
+            </div>
+            <div className="stats-box">
+              <p className="stats-text">Moves Taken</p>
+              <p className="stats-score">{moves} Moves</p>
+            </div>
           </div>
-          <div className="stats-box">
-            <p className="stats-text">Moves Taken</p>
-            <p className="stats-score">{moves} Moves</p>
+        )}
+        {playerNumber > 1 && (
+          <div className="stats-box-container">
+            {[...Array(playerNumber).keys()].map((_, index) => (
+              <div key={index} className="stats-box">
+                <p className="stats-text">Player {index + 1}</p>
+                <p className="stats-score">{} Pairs</p>
+              </div>
+            ))}
           </div>
-        </div>
+        )}
         <div className="result-box-buttons">
           <RestartButton />
           <NewGameButton location="modal" />

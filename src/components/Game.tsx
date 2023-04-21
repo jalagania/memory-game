@@ -15,6 +15,7 @@ function Game() {
     setClicks,
     matches,
     setMatches,
+    setShowResult,
   } = useGlobalContext();
 
   const boardRef = useRef<HTMLDivElement>(null);
@@ -61,7 +62,7 @@ function Game() {
       }
     }, 500);
     if (matches.length === (gridSize * gridSize) / 2) {
-      console.log("game over!");
+      setShowResult(true);
     }
   }, [itemsArray]);
 

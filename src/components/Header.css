@@ -12,32 +12,3 @@ header .section-container {
   display: flex;
   gap: 1.6rem;
 }
-
-.header-buttons button {
-  font-size: 1.8rem;
-  font-weight: 700;
-  line-height: 2.5rem;
-  padding: 1rem 2.4rem;
-  border-radius: 2.6rem;
-}
-
-.btn-restart {
-  color: var(--white);
-  background-color: var(--orange);
-}
-
-.btn-new-game {
-  color: var(--gray-dark);
-  background-color: var(--gray-lighter);
-}
-
-@media (hover: hover) {
-  .btn-restart:hover {
-    background-color: var(--orange-hover);
-  }
-
-  .btn-new-game:hover {
-    color: var(--white);
-    background-color: var(--cyan-dark);
-  }
-}

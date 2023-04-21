@@ -14,6 +14,8 @@ interface ContextType {
   setShowMenu: (arg: boolean) => void;
   showGame: boolean;
   setShowGame: (arg: boolean) => void;
+  showResult: boolean;
+  setShowResult: (arg: boolean) => void;
   theme: string;
   setTheme: (arg: string) => void;
   playerNumber: number;
@@ -36,6 +38,7 @@ const AppContext = createContext({} as ContextType);
 export function ContextProvider({ children }: PropsWithChildren) {
   const [showMenu, setShowMenu] = useState(true);
   const [showGame, setShowGame] = useState(false);
+  const [showResult, setShowResult] = useState(false);
   const [theme, setTheme] = useState("numbers");
   const [playerNumber, setPlayerNumber] = useState(1);
   const [gridSize, setGridSize] = useState(4);
@@ -57,6 +60,7 @@ export function ContextProvider({ children }: PropsWithChildren) {
     setMatches([]);
     setItemsArray([]);
     setBoardItems(getBoardItems());
+    setShowResult(false);
   }
 
   return (
@@ -66,6 +70,8 @@ export function ContextProvider({ children }: PropsWithChildren) {
         setShowMenu,
         showGame,
         setShowGame,
+        showResult,
+        setShowResult,
         theme,
         setTheme,
         playerNumber,

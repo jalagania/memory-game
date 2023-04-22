@@ -6,12 +6,15 @@ import "./ResultModal.css";
 function ResultModal() {
   const { playerNumber, moves, getTime, scores } = useGlobalContext();
   let titleMulti = "";
-  const title = playerNumber === 1 ? "You did it!" : titleMulti;
   const subtitle =
     playerNumber === 1 ? "Game over! Here's how you got on…" : "Game over! Here are the results…";
   const results = scores
     .map((score, index) => ({ player: index + 1, score: score }))
     .sort((a, b) => b.score - a.score);
+  titleMulti =
+    results[0].score === results[1].score ? "It's a tie!" : `Player ${results[0].player} Wins!`;
+
+  const title = playerNumber === 1 ? "You did it!" : titleMulti;
 
   return (
     <div className="modal-container">
@@ -33,8 +36,13 @@ function ResultModal() {
         {playerNumber > 1 && (
           <div className="stats-box-container">
             {results.map((result, index) => (
-              <div key={index} className="stats-box">
-                <p className="stats-text">Player {result.player}</p>
+              <div
+                key={index}
+                className={`stats-box ${result.score === results[0].score ? "winner" : ""}`}
+              >
+                <p className="stats-text">
+                  Player {result.player} {result.score === results[0].score && "(Winner!)"}
+                </p>
                 <p className="stats-score">{result.score} Pairs</p>
               </div>
             ))}

@@ -1,5 +1,6 @@
 .menu-container {
   height: 100vh;
+  padding: 0 2rem;
   background-color: var(--navy);
   display: flex;
   align-items: center;
@@ -82,5 +83,22 @@ button.selected {
 
   button.selected:hover {
     background-color: var(--gray-dark);
+  }
+}
+
+@media (max-width: 425px) {
+  .menu-box {
+    padding: 2.4rem;
+    border-radius: 1rem;
+  }
+
+  .menu-box p {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
+  .menu-box button {
+    font-size: 1.6rem;
+    line-height: 2rem;
   }
 }

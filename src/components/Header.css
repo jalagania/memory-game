@@ -12,3 +12,21 @@ header .section-container {
   display: flex;
   gap: 1.6rem;
 }
+
+.btn-menu {
+  display: none;
+}
+
+@media (max-width: 425px) {
+  .logo {
+    width: 10rem;
+  }
+
+  .header-buttons {
+    display: none;
+  }
+
+  .btn-menu {
+    display: block;
+  }
+}

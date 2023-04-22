@@ -4,6 +4,10 @@ import NewGameButton from "./NewGameButton";
 import RestartButton from "./RestartButton";
 
 function Header() {
+  function handleMenu() {
+    //
+  }
+
   return (
     <header className="game-header">
       <div className="section-container">
@@ -12,6 +16,9 @@ function Header() {
           <RestartButton />
           <NewGameButton location="" />
         </div>
+        <button className="btn-restart btn-menu" onClick={handleMenu}>
+          Menu
+        </button>
       </div>
     </header>
   );

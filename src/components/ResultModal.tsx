@@ -11,8 +11,10 @@ function ResultModal() {
   const results = scores
     .map((score, index) => ({ player: index + 1, score: score }))
     .sort((a, b) => b.score - a.score);
-  titleMulti =
-    results[0].score === results[1].score ? "It's a tie!" : `Player ${results[0].player} Wins!`;
+  if (playerNumber > 1) {
+    titleMulti =
+      results[0].score === results[1].score ? "It's a tie!" : `Player ${results[0].player} Wins!`;
+  }
 
   const title = playerNumber === 1 ? "You did it!" : titleMulti;
 

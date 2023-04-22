@@ -23,7 +23,7 @@
 }
 
 .player-text,
-.button-text {
+.solo-text {
   font-size: 1.8rem;
   font-weight: 700;
   line-height: 2.2rem;
@@ -31,14 +31,15 @@
 }
 
 .player-score,
-.player-time {
+.solo-score,
+.solo-time {
   font-size: 3.2rem;
   font-weight: 700;
   line-height: 4rem;
   color: var(--gray-dark);
 }
 
-.player-time {
+.solo-time {
   width: 9rem;
 }
 
@@ -75,4 +76,53 @@
 
 .player-stats.active p {
   color: var(--white);
+}
+
+@media (max-width: 768px) {
+  .multiplayer-stats {
+    gap: 1rem;
+  }
+
+  .multiplayer-stats div {
+    padding: 1.4rem 1.6rem 0.6rem 1.6rem;
+    display: block;
+    text-align: center;
+  }
+
+  .player-text {
+    font-size: 1.6rem;
+  }
+
+  .player-score {
+    font-size: 2.4rem;
+  }
+
+  .player-stats.active::after {
+    display: none;
+  }
+}
+
+@media (max-width: 425px) {
+  .multiplayer-stats {
+    gap: 2.4rem;
+  }
+
+  .player-stats.active::before {
+    border-left: 1rem solid transparent;
+    border-right: 1rem solid transparent;
+    border-bottom: 1rem solid var(--orange);
+    top: -1rem;
+  }
+
+  .solo-stats div {
+    max-width: 25rem;
+    padding: 1.6rem 2.4rem;
+    display: block;
+    text-align: center;
+    flex-basis: 0;
+  }
+
+  .solo-time {
+    width: auto;
+  }
 }

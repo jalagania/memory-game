@@ -9,6 +9,7 @@
 }
 
 .modal-container {
+  padding: 0 2.4rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,4 +88,33 @@
 
 .modal-bg {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 425px) {
+  .result-box {
+    padding: 2.4rem;
+    border-radius: 1rem;
+  }
+
+  .result-subtitle {
+    font-size: 1.4rem;
+  }
+
+  .stats-box {
+    padding: 1.6rem;
+  }
+
+  .stats-text {
+    font-size: 1.3rem;
+  }
+
+  .stats-score {
+    font-size: 2.4rem;
+  }
+
+  .result-box-buttons {
+    margin-top: 2.4rem;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
 }

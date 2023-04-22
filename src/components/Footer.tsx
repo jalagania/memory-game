@@ -4,6 +4,7 @@ import "./Footer.css";
 function Footer() {
   const { playerNumber, moves, getTime, currentPlayer, scores } = useGlobalContext();
   const players = Array(playerNumber).fill(0);
+  const playerText = window.innerWidth <= 425 ? "P" : "Player ";
 
   return (
     <footer className="game-footer">
@@ -16,7 +17,10 @@ function Footer() {
                   key={index}
                   className={`player-stats ${currentPlayer === index ? "active" : ""}`}
                 >
-                  <p className="player-text">Player {index + 1}</p>
+                  <p className="player-text">
+                    {playerText}
+                    {index + 1}
+                  </p>
                   <p className="player-score">{scores[index]}</p>
                 </div>
               ))}
@@ -25,12 +29,12 @@ function Footer() {
           {playerNumber === 1 && (
             <div className="solo-stats">
               <div className="time-box">
-                <p className="button-text">Time</p>
-                <p className="player-time">{getTime()}</p>
+                <p className="solo-text">Time</p>
+                <p className="solo-time">{getTime()}</p>
               </div>
               <div className="moves-box">
-                <p className="button-text">Moves</p>
-                <p className="player-score">{moves}</p>
+                <p className="solo-text">Moves</p>
+                <p className="solo-score">{moves}</p>
               </div>
             </div>
           )}

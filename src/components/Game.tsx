@@ -10,6 +10,8 @@ function Game() {
     gridSize,
     playerNumber,
     boardItems,
+    gameStarted,
+    setGameStarted,
     itemsArray,
     setItemsArray,
     clicks,
@@ -21,9 +23,11 @@ function Game() {
     setShowResult,
     timer,
     startTimer,
-    intervalRef,
+    stopTimer,
     currentPlayer,
     setCurrentPlayer,
+    setScores,
+    scores,
   } = useGlobalContext();
 
   const boardRef = useRef<HTMLDivElement>(null);
@@ -46,7 +50,7 @@ function Game() {
         return [...prevState, { name: item, index: index }];
       });
     }
-    if (timer === 0 && playerNumber === 1) startTimer();
+    setGameStarted(true);
   }
 
   useEffect(() => {
@@ -72,6 +76,10 @@ function Game() {
           );
           boardRef.current!.children[itemsArray[0].index].classList.add("last");
           boardRef.current!.children[itemsArray[1].index].classList.add("last");
+
+          const newScores = [...scores];
+          newScores[currentPlayer] = newScores[currentPlayer] + 1;
+          setScores(newScores);
         }
         setClicks([]);
         setItemsArray([]);
@@ -79,10 +87,16 @@ function Game() {
     }, 500);
 
     if (matches.length === (gridSize * gridSize) / 2) {
+      stopTimer();
       setShowResult(true);
-      clearInterval(intervalRef.current);
     }
   }, [itemsArray]);
+
+  useEffect(() => {
+    if (playerNumber === 1 && timer === 0 && gameStarted) {
+      startTimer();
+    }
+  }, [gameStarted]);
 
   return (
     <div className="game-container">

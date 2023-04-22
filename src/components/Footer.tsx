@@ -2,15 +2,14 @@ import { useGlobalContext } from "../context";
 import "./Footer.css";
 
 function Footer() {
-  const { playerNumber, moves, getTime, currentPlayer } = useGlobalContext();
-  const player = playerNumber > 1 ? "multi" : "solo";
+  const { playerNumber, moves, getTime, currentPlayer, scores } = useGlobalContext();
   const players = Array(playerNumber).fill(0);
 
   return (
     <footer className="game-footer">
       <div className="section-container">
         <div className="footer-box">
-          {player === "multi" && (
+          {playerNumber > 1 && (
             <div className="multiplayer-stats">
               {players.map((_, index) => (
                 <div
@@ -18,12 +17,12 @@ function Footer() {
                   className={`player-stats ${currentPlayer === index ? "active" : ""}`}
                 >
                   <p className="player-text">Player {index + 1}</p>
-                  <p className="player-score">0</p>
+                  <p className="player-score">{scores[index]}</p>
                 </div>
               ))}
             </div>
           )}
-          {player === "solo" && (
+          {playerNumber === 1 && (
             <div className="solo-stats">
               <div className="time-box">
                 <p className="button-text">Time</p>

@@ -4,11 +4,14 @@ import RestartButton from "./RestartButton";
 import "./ResultModal.css";
 
 function ResultModal() {
-  const { playerNumber, moves, getTime } = useGlobalContext();
+  const { playerNumber, moves, getTime, scores } = useGlobalContext();
   let titleMulti = "";
   const title = playerNumber === 1 ? "You did it!" : titleMulti;
   const subtitle =
     playerNumber === 1 ? "Game over! Here's how you got on…" : "Game over! Here are the results…";
+  const results = scores
+    .map((score, index) => ({ player: index + 1, score: score }))
+    .sort((a, b) => b.score - a.score);
 
   return (
     <div className="modal-container">
@@ -29,10 +32,10 @@ function ResultModal() {
         )}
         {playerNumber > 1 && (
           <div className="stats-box-container">
-            {[...Array(playerNumber).keys()].map((_, index) => (
+            {results.map((result, index) => (
               <div key={index} className="stats-box">
-                <p className="stats-text">Player {index + 1}</p>
-                <p className="stats-score">{} Pairs</p>
+                <p className="stats-text">Player {result.player}</p>
+                <p className="stats-score">{result.score} Pairs</p>
               </div>
             ))}
           </div>

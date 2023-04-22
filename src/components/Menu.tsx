@@ -12,6 +12,7 @@ function Menu() {
     gridSize,
     setGridSize,
     restartGame,
+    setScores,
   } = useGlobalContext();
 
   function handleThemeButton(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -30,6 +31,7 @@ function Menu() {
     restartGame();
     setShowMenu(false);
     setShowGame(true);
+    setScores(new Array(playerNumber).fill(0));
   }
 
   return (

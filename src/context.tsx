@@ -1,5 +1,5 @@
 import * as _ from "lodash";
-import { PropsWithChildren, createContext, useContext, useRef, useState } from "react";
+import { PropsWithChildren, createContext, useContext, useState } from "react";
 import { iconpack } from "./data";
 
 interface ItemType {
@@ -24,6 +24,8 @@ interface ContextType {
   setGridSize: (arg: number) => void;
   boardItems: string[];
   setBoardItems: StateArrayType;
+  gameStarted: boolean;
+  setGameStarted: (arg: boolean) => void;
   itemsArray: ItemType[];
   setItemsArray: React.Dispatch<React.SetStateAction<ItemType[]>>;
   clicks: string[];
@@ -37,9 +39,11 @@ interface ContextType {
   setTimer: React.Dispatch<React.SetStateAction<number>>;
   getTime: () => string;
   startTimer: () => void;
-  intervalRef: React.MutableRefObject<number | undefined>;
+  stopTimer: () => void;
   currentPlayer: number;
   setCurrentPlayer: (arg: number) => void;
+  scores: number[];
+  setScores: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 const AppContext = createContext({} as ContextType);
@@ -52,12 +56,15 @@ export function ContextProvider({ children }: PropsWithChildren) {
   const [playerNumber, setPlayerNumber] = useState(1);
   const [gridSize, setGridSize] = useState(4);
   const [boardItems, setBoardItems] = useState<string[]>([]);
+  const [gameStarted, setGameStarted] = useState(false);
   const [itemsArray, setItemsArray] = useState<ItemType[]>([]);
   const [clicks, setClicks] = useState<string[]>([]);
   const [matches, setMatches] = useState<string[]>([]);
   const [moves, setMoves] = useState(0);
   const [timer, setTimer] = useState(0);
+  const [intervalID, setIntervalID] = useState(0);
   const [currentPlayer, setCurrentPlayer] = useState(0);
+  const [scores, setScores] = useState<number[]>([]);
 
   function getBoardItems(): string[] {
     let numbers = Array.from(Array((gridSize * gridSize) / 2).keys()).map((el) => el.toString());
@@ -67,11 +74,15 @@ export function ContextProvider({ children }: PropsWithChildren) {
     return theme === "numbers" ? numbers : icons;
   }
 
-  const intervalRef = useRef<number>();
   function startTimer() {
-    intervalRef.current = setInterval(() => {
+    const interval = setInterval(() => {
       setTimer((prevState) => prevState + 1);
     }, 1000);
+    setIntervalID(interval);
+  }
+
+  function stopTimer() {
+    clearInterval(intervalID);
   }
 
   function getTime() {
@@ -90,8 +101,10 @@ export function ContextProvider({ children }: PropsWithChildren) {
     setItemsArray([]);
     setBoardItems(getBoardItems());
     setShowResult(false);
-    clearInterval(intervalRef.current);
+    stopTimer();
+    setGameStarted(false);
     setCurrentPlayer(0);
+    setScores(new Array(playerNumber).fill(0));
   }
 
   return (
@@ -111,6 +124,8 @@ export function ContextProvider({ children }: PropsWithChildren) {
         setGridSize,
         boardItems,
         setBoardItems,
+        gameStarted,
+        setGameStarted,
         itemsArray,
         setItemsArray,
         clicks,
@@ -124,9 +139,11 @@ export function ContextProvider({ children }: PropsWithChildren) {
         setTimer,
         getTime,
         startTimer,
-        intervalRef,
+        stopTimer,
         currentPlayer,
         setCurrentPlayer,
+        scores,
+        setScores,
       }}
     >
       {children}

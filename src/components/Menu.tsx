@@ -1,4 +1,5 @@
 import { useGlobalContext } from "../context";
+import Attribution from "./Attribution";
 import "./Menu.css";
 
 function Menu() {
@@ -82,6 +83,7 @@ function Menu() {
             Start Game
           </button>
         </div>
+        <Attribution />
       </div>
     </div>
   );

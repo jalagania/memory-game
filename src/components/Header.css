@@ -8,12 +8,17 @@ header .section-container {
   width: 14rem;
 }
 
-.header-buttons {
+.menu-buttons {
   display: flex;
   gap: 1.6rem;
 }
 
-.btn-menu {
+.btn-menu,
+.btn-resume {
+  display: none;
+}
+
+.menu-modal-bg {
   display: none;
 }
 
@@ -22,11 +27,42 @@ header .section-container {
     width: 10rem;
   }
 
-  .header-buttons {
-    display: none;
+  .btn-menu,
+  .btn-resume {
+    display: block;
   }
 
-  .btn-menu {
+  .menu-modal,
+  .menu-modal-bg {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+  }
+
+  .menu-modal {
+    padding: 0 2.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .menu-buttons {
+    width: 100%;
+    padding: 2.4rem;
+    background-color: var(--white-dark);
+    border-radius: 1rem;
+    position: relative;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  .menu-modal-bg {
     display: block;
+    background-color: rgba(0, 0, 0, 0.5);
   }
 }

@@ -12,6 +12,8 @@ type StateArrayType = React.Dispatch<React.SetStateAction<string[]>>;
 interface ContextType {
   showMenu: boolean;
   setShowMenu: (arg: boolean) => void;
+  showMenuModal: boolean;
+  setShowMenuModal: (arg: boolean) => void;
   showGame: boolean;
   setShowGame: (arg: boolean) => void;
   showResult: boolean;
@@ -50,6 +52,7 @@ const AppContext = createContext({} as ContextType);
 
 export function ContextProvider({ children }: PropsWithChildren) {
   const [showMenu, setShowMenu] = useState(true);
+  const [showMenuModal, setShowMenuModal] = useState(false);
   const [showGame, setShowGame] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [theme, setTheme] = useState("numbers");
@@ -105,6 +108,7 @@ export function ContextProvider({ children }: PropsWithChildren) {
     setGameStarted(false);
     setCurrentPlayer(0);
     setScores(new Array(playerNumber).fill(0));
+    setShowMenuModal(false);
   }
 
   return (
@@ -112,6 +116,8 @@ export function ContextProvider({ children }: PropsWithChildren) {
       value={{
         showMenu,
         setShowMenu,
+        showMenuModal,
+        setShowMenuModal,
         showGame,
         setShowGame,
         showResult,

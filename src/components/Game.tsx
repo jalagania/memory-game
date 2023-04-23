@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useGlobalContext } from "../context";
+import Attribution from "./Attribution";
 import Footer from "./Footer";
 import "./Game.css";
 import Header from "./Header";
@@ -115,6 +116,7 @@ function Game() {
           ))}
         </main>
         <Footer />
+        <Attribution />
       </div>
     </div>
   );

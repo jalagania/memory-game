@@ -1,14 +1,14 @@
 .attribution {
+  margin-top: 1rem;
   font-size: 1.6rem;
-  font-weight: bold;
   text-align: center;
-  color: #00494d;
+  color: var(--cyan-dark);
 }
 
 .attribution a:link,
 a:visited {
   text-decoration: none;
-  color: #26c0ab;
+  color: var(--orange);
 }
 
 .attribution a:hover {
